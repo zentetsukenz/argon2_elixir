@@ -48,11 +48,12 @@ KERNEL_NAME := $(shell uname -s)
 
 LIB_NAME = priv/argon2_nif.so
 ifneq ($(CROSSCOMPILE),)
-	LIB_CFLAGS := -shared -fPIC -fvisibility=hidden -DA2_VISCTL=1
+	LIB_CFLAGS := -shared -fPIC#-fvisibility=hidden -DA2_VISCTL=1
 	SO_LDFLAGS := -Wl,-soname,libargon2.so.0
+	$(info **************** CROSSCOMPILING ****************)
 else
 	ifeq ($(KERNEL_NAME), Linux)
-		LIB_CFLAGS := -shared -fPIC -fvisibility=hidden -DA2_VISCTL=1
+		LIB_CFLAGS := -shared -fPIC#-fvisibility=hidden -DA2_VISCTL=1
 		SO_LDFLAGS := -Wl,-soname,libargon2.so.0
 	endif
 	ifeq ($(KERNEL_NAME), Darwin)
