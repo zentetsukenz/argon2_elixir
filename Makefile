@@ -40,7 +40,7 @@ OPTTEST := $(shell $(CC) -I$(SRC_INC) -I$(SRC_DIR) -march=$(OPTTARGET) $(SRC_DIR
 ifneq ($(OPTTEST), 0)
 	SRC += $(SRC_DIR)/ref.c
 else
-	CFLAGS += -march=$(OPTTARGET)
+	# CFLAGS += -march=$(OPTTARGET)
 	SRC += $(SRC_DIR)/opt.c
 endif
 
